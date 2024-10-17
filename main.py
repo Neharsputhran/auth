@@ -6,6 +6,7 @@ from pyzbar.pyzbar import decode
 from PIL import Image
 import random
 import string
+import secrets  # Import for more secure random number generation
 
 # Function to generate a key (this should be done once and stored securely)
 def generate_key():
@@ -67,8 +68,7 @@ def generate_numeric_otp(secret):
 # Function to generate an alphanumeric OTP
 def generate_alphanumeric_otp(length=6):
     characters = string.ascii_letters + string.digits
-    otp = ''.join(random.choice(characters) for i in range(length))
-    print(f"Generated Alphanumeric OTP: {otp}")
+    otp = ''.join(secrets.choice(characters) for i in range(length))
     return otp
 
 if __name__ == "__main__":
@@ -95,3 +95,6 @@ if __name__ == "__main__":
     # Step 7: Generate an alphanumeric OTP (for custom purposes)
     alphanumeric_otp = generate_alphanumeric_otp(6)  # Generates 6-character alphanumeric OTP
 
+    # Print the OTPs
+    print("Numeric OTP:", numeric_otp)
+    print("Alphanumeric OTP:", alphanumeric_otp)
